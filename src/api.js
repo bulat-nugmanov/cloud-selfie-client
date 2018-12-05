@@ -1,20 +1,9 @@
 // @flow
 
 import axios from 'axios';
+import type { Feature } from "./types";
 
 const API_PATH = "https://us-central1-yvr-rainmakers2.cloudfunctions.net/selfie-recommendations";
-
-type Feature =
-  | "art"
-  | "tourism"
-  | "food"
-  | "cars"
-  | "nature";
-
-type Location = {
-  lat: number,
-  lot: number
-};
 
 type Request = {
   location: Location,
