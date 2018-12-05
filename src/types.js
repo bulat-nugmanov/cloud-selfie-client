@@ -27,3 +27,12 @@ export type ReduxState = {
   recommendations: Recommendation,
   error: any
 }
+
+export type Request = {
+  location: Location,
+  features: Feature[]
+};
+
+export type Response = {
+  recommendations: Recommendation[]
+}

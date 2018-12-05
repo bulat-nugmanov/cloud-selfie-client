@@ -1,16 +1,11 @@
 // @flow
 
 import axios from 'axios';
-import type { Feature } from "./types";
+import type { Response, Request } from "./types";
 
 const API_PATH = "https://us-central1-yvr-rainmakers2.cloudfunctions.net/selfie-recommendations";
 
-type Request = {
-  location: Location,
-  features: Feature[]
-};
-
-export const getRecommendations = (request: Request) => {
+export const getRecommendations = (request: Request): Promise<Response> => {
 
   return new Promise((resolve, reject) => {
 
