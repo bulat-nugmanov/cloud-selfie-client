@@ -13,7 +13,7 @@ const reducer = (state: ReduxState = initialState, action) => {
     case 'SUCCESS':
       return {
         fetching: false,
-        recommendations: action.recommendations,
+        recommendations: action.recommendations.recommendations,
         error: undefined
       };
 
