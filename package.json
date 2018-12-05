@@ -27,7 +27,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "flow-bin": "^0.87.0"
+    "flow-bin": "^0.87.0",
     "material-ui-search-bar": "^0.4.2",
     "semantic-ui-react": "^0.83.0"
   }
