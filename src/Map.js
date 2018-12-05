@@ -8,14 +8,28 @@ type Props = {
 
 export class Map extends React.Component<Props> {
 
-  render = () => (
-    <div>todo: show recommendations</div>
-  )
+  static defaultProps = {
+    recommendations: [],
+    fetching: false
+  };
+
+  render = () => {
+
+    // todo:
+    // if this.props.fetching show loading spinner
+
+    return (
+      <div>todo: show recommendations</div>
+    )
+  }
 
 }
 
-const stateToProps = (state) => ({
-  recommendations: state.recommendations
-});
+const stateToProps = (state) => {
+  return {
+    recommendations: state.recommendations,
+    fetching: state.fetching
+  }
+};
 
 export default connect(stateToProps, null)(Map);
