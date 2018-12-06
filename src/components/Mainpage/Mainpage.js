@@ -2,13 +2,21 @@
 
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
-import FilledInput from '@material-ui/core/Input';
+import Input from '@material-ui/core/Input';
 import { fetchRecommendations} from "../../actions";
 import './Mainpage.css';
 import {connect} from "react-redux";
+import ChipsArray from "../ChipArray";
+
+type Tag = {
+  key: string,
+  label: string
+}
 
 type State = {
-  errorMessage: string
+  errorMessage: string,
+  nextTag: string,
+  tags: Tag[]
 }
 
 type Props = {
@@ -18,7 +26,12 @@ type Props = {
 class Main extends Component<Props, State> {
 
   state = {
-    errorMessage: undefined
+    errorMessage: undefined,
+    nextTag: undefined,
+    tags: [{
+      label: 'modern art',
+      key: "1"
+    }]
   };
 
   handleLocationError = () => {
@@ -56,13 +69,40 @@ class Main extends Component<Props, State> {
 
   };
 
+  onAddTag = () => {
+
+    const { nextTag, tags } = this.state;
+    if(!nextTag || nextTag === '') return;
+
+    this.setState({
+      nextTag: "",
+      tags: [...tags, {
+        key: tags.length + 1,
+        label: nextTag
+      }]
+    });
+
+  };
+
+
+
   render() {
 
     return (
       <div className="App">
         <p>Logo</p>
-        <div>
-          <FilledInput className="input"/>
+        <div style={{marginBottom: 50, marginTop: 50}}>
+          <Input
+            style={{width: 330}}
+            value={this.state.nextTag}
+            onChange={e => { this.setState({nextTag: e.target.value})}}
+          />
+          <Button
+            style={{ marginLeft: 20 }}
+            variant={"outlined"}
+            onClick={this.onAddTag}>
+            +
+          </Button>
           <Button
             color="primary"
             onClick={this.onContinue}
@@ -71,6 +111,12 @@ class Main extends Component<Props, State> {
             className="search">
             GO
           </Button>
+        </div>
+        <div style={{width: 500, margin: 'auto'}}>
+          <ChipsArray
+            data={this.state.tags}
+            onTagDelete={() => {}}
+          />
         </div>
         {
           this.state.errorMessage &&
